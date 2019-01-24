@@ -1,4 +1,4 @@
-package com.awesomeproject;
+package com.markx0823dev.helloworldreactnative;
 
 import android.app.Application;
 
