@@ -93,6 +93,9 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+def cmd = 'git rev-list HEAD --first-parent --count'
+def gitVersion = cmd.execute().text.trim().toInteger()
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -101,7 +104,7 @@ android {
         applicationId "com.markx0823dev.helloworldreactnative"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
+        versionCode gitVersion
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
