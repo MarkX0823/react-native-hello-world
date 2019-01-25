@@ -40,7 +40,8 @@ end
 lane :google_play_alpha do
   upload_to_play_store(
     track: 'alpha',
-    apk: 'app/build/outputs/apk/release/app-release.apk'
+    apk: 'app/build/outputs/apk/release/app-release.apk',
+    package_name: ENV['HELLO_WORLD_REACT_NATIVE_PACKAGE_NAME']
   )
 end
 
