@@ -37,9 +37,22 @@ platform :android do
   end
 end
 
+lane :google_play_check_version_code_internal do
+  google_play_track_version_codes(
+    track: 'internal'
+  )
+end
+
 lane :google_play_alpha do
   upload_to_play_store(
     track: 'alpha',
+    apk: 'app/build/outputs/apk/release/app-release.apk'
+  )
+end
+
+lane :google_play_internal do
+  upload_to_play_store(
+    track: 'internal',
     apk: 'app/build/outputs/apk/release/app-release.apk'
   )
 end

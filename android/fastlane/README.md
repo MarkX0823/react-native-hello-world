@@ -15,9 +15,19 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
+### google_play_check_version_code_internal
+```
+fastlane google_play_check_version_code_internal
+```
+
 ### google_play_alpha
 ```
 fastlane google_play_alpha
+```
+
+### google_play_internal
+```
+fastlane google_play_internal
 ```
 
 
