@@ -39,7 +39,8 @@ end
 
 lane :google_play_alpha do
   upload_to_play_store(
-    track: 'alpha'
+    track: 'alpha',
+    apk: 'app/build/outputs/apk/release/app-release.apk'
   )
 end
 
