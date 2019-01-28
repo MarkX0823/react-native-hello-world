@@ -24,19 +24,16 @@ while i < len(words):
 
     if 'version' == word:
         vc = words[i-1][1:-1]
-        print('Version in google play: ' + vc)
+        print('Version code of APK in Google Play: ' + vc)
         break
 
     i += 1
 
 out_git = subprocess.check_output(['git', 'rev-list', 'HEAD', '--first-parent', '--count'])
 out_git = out_git.decode('utf-8')
-print('Version in git server: ' + out_git)
+print('Version code of source code in git server: ' + out_git)
 
 if int(vc) < int(out_git):
-    out_upload = subprocess.check_output(['fastlane', 'google_play_internal'])
-    out_upload.decode('utf-8')
-    print(out_upload)
+    out_upload = subprocess.run(['fastlane', 'google_play_internal'])
 else:
-    print('Source code is older than last APK. Do nothing!')
-
+    print('Source code is not newer than APK. Do nothing!')
