@@ -1,6 +1,11 @@
 package com.markx0823dev.helloworldreactnative;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
@@ -89,5 +94,49 @@ public class MyMathTest {
 
         // assert
         int indexOutOfBoundNumber = sampleArr[3];
+    }
+
+    @Test
+    public void sampleAssertThat() {
+        // arrange
+        List<Integer> expect = Arrays.asList(0, 1, 2, 3, 4);
+
+        // assert
+        assertThat(expect, CoreMatchers.everyItem(Matchers.lessThan(5)));
+    }
+
+    @Mock
+    private MyMathLogger mockLogger = new MyMathLogger();
+
+    @Test
+    public void sampleLogCallOnce() {
+        // arrange
+        MockitoAnnotations.initMocks(this);
+
+        // act
+        MyMath myMath = new MyMath(mockLogger);
+        myMath.mockAdd(-1, -2);
+
+        // assert
+        Mockito.verify(mockLogger).log(Mockito.anyString());
+    }
+
+    @Test
+    public void sampleLogCallThreeTimes() {
+        // arrange
+        MockitoAnnotations.initMocks(this);
+        int expectCallTimes = 3;
+        MyMath myMath = new MyMath(mockLogger);
+
+        // act
+        myMath.mockAdd(-1, 2);
+        myMath.mockAdd(1, -2);
+        myMath.mockAdd(3, 100);
+        myMath.mockAdd(0, -2);
+        myMath.mockAdd(-999, 33);
+        myMath.mockAdd(-999, 1000);
+
+        // assert
+        Mockito.verify(mockLogger, Mockito.times(expectCallTimes)).log(Mockito.anyString());
     }
 }
